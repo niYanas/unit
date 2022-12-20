@@ -346,7 +346,11 @@
                                             </button>
                                         </div>
                                         <div class="modal-body">
-                                            <?= form_open('Home/tambah'); ?>
+                                            <?= form_open('Home/tambahIndikator'); ?>
+                                            <div class="form-group label-floating">
+                                                <label class="control-label">UNIT ID</label>
+                                                <input type="text" class="form-control" id="unit_id" name="unit_id">
+                                            </div>
                                             <div class="form-group label-floating">
                                                 <label class="control-label">Judul Indikator</label>
                                                 <input type="text" class="form-control" id="judul" name="judul">
@@ -391,27 +395,31 @@
                             <!-- End Modal Tambah Indikator-->
 
                             <!-- Modal Nilai-->
-                            <form action="<?= base_url() ?>" method="post">
-                                <div class="modal fade" id="addNilaiModal" tabindex="-1" role="dialog"
-                                    aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                    <div class="modal-dialog" role="document">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h5 class="modal-title" id="exampleModalLabel">Tambah Indikator</h5>
-                                                <button type="button" class="close" data-dismiss="modal"
-                                                    aria-label="Close">
-                                                    <span aria-hidden="true">&times;</span>
-                                                </button>
-                                            </div>
-                                            <div class="modal-body">
+                            <div class="modal fade" id="addNilaiModal" tabindex="-1" role="dialog"
+                                aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel">Tambah Nilai</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <form action="<?= base_url('home/tambahNilai') ?>" method="post">
+                                                <div class="form-group label-floating">
+                                                    <label class="control-label">Unit ID</label>
+                                                    <input type="text" class="form-control" id="unit_id" name="unit_id">
+                                                </div>
                                                 <div class=" row">
                                                     <div class="col-md-10">
                                                         <div class="form-group label-floating">
                                                             <select class="selectpicker"
                                                                 data-style="select-with-transition"
-                                                                title="Pilih Indikator Judul">
+                                                                title="Pilih Indikator Judul" name="indikator_id">
                                                                 <?php foreach($data as $d) : ?>
-                                                                <option value="<?= $d->id?>"><?= $d->judul ?>
+                                                                <option id="indikator_id" value="<?= $d->id?>">
+                                                                    <?= $d->judul ?>
                                                                 </option>
                                                                 <?php endforeach ?>
                                                             </select>
@@ -420,7 +428,8 @@
                                                     <div class="col-md-2">
                                                         <div class="form-group label-floating">
                                                             <label class="control-label">Nilai</label>
-                                                            <input id="nJudul" type="text" class="form-control">
+                                                            <input name="nJudul" id="nJudul" type="number"
+                                                                class="form-control">
                                                         </div>
                                                     </div>
                                                     <div class="col-md-10">
@@ -429,7 +438,8 @@
                                                                 data-style="select-with-transition"
                                                                 title="Pilih Numerator">
                                                                 <?php foreach($data as $d) : ?>
-                                                                <option value="<?= $d->id?>"><?= $d->numerator ?>
+                                                                <option value="<?= $d->id?>">
+                                                                    <?= $d->numerator ?>
                                                                 </option>
                                                                 <?php endforeach ?>
                                                             </select>
@@ -438,7 +448,7 @@
                                                     <div class="col-md-2">
                                                         <div class="form-group label-floating">
                                                             <label class="control-label">Nilai</label>
-                                                            <input type="text" class="form-control">
+                                                            <input name="nNum" type="number" class="form-control">
                                                         </div>
                                                     </div>
                                                     <div class="col-md-10">
@@ -456,26 +466,27 @@
                                                     <div class="col-md-2">
                                                         <div class="form-group label-floating">
                                                             <label class="control-label">Nilai</label>
-                                                            <input type="text" class="form-control">
+                                                            <input name="nDenum" type="number" class="form-control">
                                                         </div>
                                                     </div>
                                                     <div class="col-md-12">
                                                         <div class="form-group">
                                                             <label class="control-label">Tanggal</label>
-                                                            <input type="date" class="form-control">
+                                                            <input type="date" class="form-control" name="tanggal">
                                                         </div>
                                                     </div>
                                                 </div>
 
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-secondary"
-                                                    data-dismiss="modal">Close</button>
-                                                <button type="submit" class="btn btn-primary">Save</button>
-                                            </div>
                                         </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary"
+                                                data-dismiss="modal">Close</button>
+                                            <button type="submit" class="btn btn-primary">Save</button>
+                                        </div>
+                                        <?= form_close(); ?>
                                     </div>
                                 </div>
+                            </div>
                             </form>
                             <!-- End Modal Nilai -->
 
